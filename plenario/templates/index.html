@@ -39,7 +39,10 @@
       <div class="col-md-10">
         <div class='well'>
           <p><a href="{{ url_for('views.explore_view') }}"><img src='/static/images/plenario-explorer.png' class='img-responsive img-thumbnail' alt='Plenar.io Data Explorer' /></a></p>
-          <p class="text-center"><a class="btn btn-info" href="{{ url_for('views.explore_view') }}">Try it yourself&nbsp;&nbsp;<i class="fa fa-arrow-circle-right"></i></a> <a class="btn btn-default" href="{{ url_for('views.examples_view') }}">See some examples&nbsp;&nbsp;<i class="fa fa-gear"></i></a><p>
+          <p class="text-center"><a class="btn btn-info" href="{{
+              url_for('views.explore_view') }}">Try it yourself&nbsp;&nbsp;<i
+                  class="fa fa-arrow-circle-right"></i></a> <a class="btn
+              btn-default" href="{{ url_for('views.blog_view') }}">See some examples&nbsp;&nbsp;<i class="fa fa-gear"></i></a><p>
         </div>
       </div>
     </div>

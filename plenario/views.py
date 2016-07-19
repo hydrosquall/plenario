@@ -53,9 +53,9 @@ def about_view():
     return render_template('about.html')
 
 
-@views.route('/examples')
-def examples_view():
-    return render_template('examples.html')
+@views.route('/blog')
+def blog_view():
+    return redirect("http://docs.plenar.io", code=302)
 
 
 @views.route('/maintenance')
