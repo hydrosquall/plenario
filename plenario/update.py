@@ -3,7 +3,7 @@ from multiprocessing import Process
 from flask import Flask, abort
 
 import plenario.tasks as tasks
-from plenario.api.jobs import worker_ready
+from plenario.api.jobs import submit_job, worker_ready
 
 """
 Task server that runs in AWS Elastic Beanstalk worker environment.
@@ -20,7 +20,7 @@ def create_worker():
 
     @app.route('/update/weather', methods=['POST'])
     def weather():
-        tasks.update_weather.delay()
+        tasks.update_weather()
         return "Sent off weather task"
 
     @app.route('/update/<frequency>', methods=['POST'])
@@ -52,20 +52,26 @@ def often_update():
 
 
 def daily_update():
-    tasks.update_weather.delay()
-    tasks.frequency_update.delay('daily')
+    # tasks.update_weather()
+    # tasks.frequency_update('daily')
+    submit_job({"endpoint": "update_weather", "query": ""})
+    submit_job({"endpoint": "frequency_update", "query": "yearly"})
 
 
 def weekly_update():
-    tasks.frequency_update.delay('weekly')
+    # tasks.frequency_update('weekly')
+    submit_job({"endpoint": "frequency_update", "query": "yearly"})
 
 
 def monthly_update():
-    tasks.frequency_update.delay('monthly')
+    # tasks.frequency_update('monthly')
+    submit_job({"endpoint": "frequency_update", "query": "yearly"})
 
 
 def yearly_update():
-    tasks.frequency_update.delay('yearly')
+    # tasks.frequency_update('yearly')
+    submit_job({"endpoint": "frequency_update", "query": "yearly"})
+
 
 dispatch = {
     'often': often_update,
