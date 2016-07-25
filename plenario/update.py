@@ -48,28 +48,24 @@ def often_update():
 
     # Run METAR update in new thread
     # so we can return right away to indicate the request was received
+    print "update.often_update"
     Process(target=tasks.update_metar).start()
 
 
 def daily_update():
-    # tasks.update_weather()
-    # tasks.frequency_update('daily')
-    submit_job({"endpoint": "update_weather", "query": ""})
-    submit_job({"endpoint": "frequency_update", "query": "yearly"})
+    submit_job({"endpoint": "update_weather", "query": None})
+    submit_job({"endpoint": "frequency_update", "query": "daily"})
 
 
 def weekly_update():
-    # tasks.frequency_update('weekly')
-    submit_job({"endpoint": "frequency_update", "query": "yearly"})
+    submit_job({"endpoint": "frequency_update", "query": "weekly"})
 
 
 def monthly_update():
-    # tasks.frequency_update('monthly')
-    submit_job({"endpoint": "frequency_update", "query": "yearly"})
+    submit_job({"endpoint": "frequency_update", "query": "monthly"})
 
 
 def yearly_update():
-    # tasks.frequency_update('yearly')
     submit_job({"endpoint": "frequency_update", "query": "yearly"})
 
 
